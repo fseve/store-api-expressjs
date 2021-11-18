@@ -35,6 +35,7 @@ module.exports = function() {
     router.get('/orders', ordersController.list);
     router.get('/orders/:id', ordersController.show);
     router.put('/orders/:id', ordersController.update);
+    router.delete('/orders/:id', ordersController.delete);
 
     return router;
 };

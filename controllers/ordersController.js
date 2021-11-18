@@ -72,3 +72,14 @@ exports.update = async(req, res, next) => {
         });
     }
 };
+
+exports.delete = async(req, res, next) => {
+    try {
+        await Orders.findOneAndDelete({ _id: req.params.id });
+        res.json({ message: 'Orden eliminada correctamente' });
+    } catch (error) {
+        res.status(400).json({
+            message: 'Error al procesar la petición'
+        });
+    }
+};
