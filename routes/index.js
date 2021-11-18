@@ -33,6 +33,8 @@ module.exports = function() {
     // órdenes
     router.post('/orders', ordersController.add);
     router.get('/orders', ordersController.list);
+    // Obtener órdenes por cliente
+    router.get('/orders/customer/:id', ordersController.byCustomer);
     router.get('/orders/:id', ordersController.show);
     router.put('/orders/:id', ordersController.update);
     router.delete('/orders/:id', ordersController.delete);

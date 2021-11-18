@@ -83,3 +83,21 @@ exports.delete = async(req, res, next) => {
         });
     }
 };
+
+// Buscar ordenes por cliente
+exports.byCustomer = async(req, res, next) => {
+    try {
+        const orders = await Orders.find({ customer: req.params.id })
+        .populate('customer')
+        .populate({
+            path: 'products.product',
+            model: 'Products'
+        });
+
+        res.json(orders);
+    } catch (error) {
+        res.status(400).json({
+            message: 'Error al procesar la petición'
+        });
+    }
+};
