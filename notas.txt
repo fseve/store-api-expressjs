@@ -26,4 +26,9 @@ La anterior sentencia se puede agregar en el package.json como un script a Ejecu
 
     De esta forma ejecutaremos en la consola npm start para levantar nuestro proyecto
 
+Instalar las dependencias de mongoose, body-parser, body-parser y cors
+    mongoose es el cliente de MongoDB para Node
+    body-parser nos permitirá acceder al cuerpo de una petición y tratarlo como un objeto
+    cors es una librería de control de acceso http que permitirá el acceso de los clientes a la api rest
 
+    npm install --save mongoose body-parser cors
