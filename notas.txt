@@ -9,3 +9,21 @@ Instalar el framework de express
 Ejecutar nuestro proyecto desde consola
 
     node index.js
+
+Instalar la dependencia nodemon para que esté atenta a los cambios
+Esta dependencia se instalará de forma global
+
+    npm install -g nodemon
+
+Ejecutar nodemon en la consola para levantar nuestro proyecto
+
+    nodemon
+
+
+La anterior sentencia se puede agregar en el package.json como un script a Ejecutar
+
+    "start": "nodemon index.js",
+
+    De esta forma ejecutaremos en la consola npm start para levantar nuestro proyecto
+
+
