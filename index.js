@@ -1,6 +1,25 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+
+// Conexión a la base de datos
+mongoose.Promise = global.Promise;
+mongoose.connect(
+    'mongodb://localhost/store-api',
+    {
+        useNewUrlParser: true
+    }
+);
+
+// Habilitar body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+// Habilitar CORS
+app.use(cors());
 
 app.get('/', function (req, res) {
     res.send('¡Hola mundo de Express JS!');
