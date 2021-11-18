@@ -26,6 +26,9 @@ app.use(cors());
 
 app.use('/', routes());
 
+// Habilitar carpeta uploads como estática y pública
+app.use(express.static('uploads'));
+
 // app.get('/', function (req, res) {
 //     res.send('¡Hola mundo de Express JS!');
 // });

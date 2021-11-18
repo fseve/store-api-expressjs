@@ -19,10 +19,14 @@ module.exports = function() {
     router.delete('/customers/:id', customersController.delete);
 
     // productos
-    router.post('/products', productsController.add);
+    router.post('/products',
+        productsController.fileUpload,
+        productsController.add);
     router.get('/products', productsController.list);
     router.get('/products/:id', productsController.show);
-    router.put('/products/:id', productsController.update);
+    router.put('/products/:id',
+        productsController.fileUpload,
+        productsController.update);
     router.delete('/products/:id', productsController.delete);
 
     return router;

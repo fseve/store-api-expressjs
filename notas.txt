@@ -32,3 +32,9 @@ Instalar las dependencias de mongoose, body-parser, body-parser y cors
     cors es una librería de control de acceso http que permitirá el acceso de los clientes a la api rest
 
     npm install --save mongoose body-parser cors
+
+Instalar dependencias para trabajar con imagenes
+    multer para el tratamiento de imágenes
+    shortid para la generación de id's aleatorios
+
+    npm install --save multer shortid
