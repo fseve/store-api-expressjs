@@ -1,19 +1,16 @@
-const Customers = require('../models/Customers');
+const Products = require('../models/Products');
 
-// agregar cliente
-exports.add = async(req, res, next) => {
-    const customer = new Customers(req.body);
+// agregar producto
+exports.add = async(req, res) => {
+    const product = new Products(req.body);
 
     try {
-        await customer.save();
-        res.json({ message: 'Nuevo cliente agregado' });
+        await product.save();
+        res.json({ message: 'Nuevo producto agregado' });
     } catch (error) {
-        // console.log(error);
-        // res.send(error);
-        // next();
         if (error.code === 11000) {
             res.status(400).json({
-                message: `Ya existe un cliente con el email ${req.body.email}`
+                message: `Ya existe el producto con el sku ${req.body.sku}`
             });
         } else {
             res.status(400).json({
@@ -23,28 +20,28 @@ exports.add = async(req, res, next) => {
     }
 };
 
-// Primera acción: list
+// listar productos
 exports.list = async(req, res) => {
     try {
-        const customers = await Customers.find({});
-        res.json(customers);
+        const products = await Products.find({});
+        res.json(products);
     } catch (error) {
-        console.log(error);
-        res.send(error);
+        res.status(400).json({
+            message: 'Error al procesar la petición'
+        });
         next();
     }
 };
 
-// leer cliente por id
 exports.show = async(req, res, next) => {
     try {
-        const customer = await Customers.findById(req.params.id);
-        if (!customer) {
+        const product = await Products.findById(req.params.id);
+        if (!product) {
             res.status(404).json({
-                message: 'El cliente no existe'
+                message: 'El producto no existe'
             });
         } else { // Se agregó el ELSE al momento de realizar las pruebas
-            res.json(customer);
+            res.json(product);
         }
     } catch (error) {
         res.status(400).json({
@@ -53,25 +50,21 @@ exports.show = async(req, res, next) => {
     }
 };
 
-// Actualizar cliente
+// Actualizar producto
 exports.update = async(req, res, next) => {
     try {
-        const customer = await Customers.findOneAndUpdate(
+        const product = await Products.findOneAndUpdate(
             { _id: req.params.id },
             req.body,
             { new: true }
         );
-        // res.json(customer);
         res.json({
-            message: 'Cliente actualizado correctamente'
+            message: 'Producto actualizado correctamente'
         });
     } catch (error) {
-        // res.status(400).json({
-        //     message: 'Error al procesar la petición'
-        // });
         if (error.code === 11000) {
             res.status(400).json({
-                message: `Ya existe un cliente con el email ${req.body.email}`
+                message: `Ya existe el producto con el sku ${req.body.sku}`
             });
         } else {
             res.status(400).json({
@@ -81,12 +74,12 @@ exports.update = async(req, res, next) => {
     }
 };
 
-// Eliminar cliente
+// Eliminar producto
 exports.delete = async(req, res, next) => {
     try {
-        await Customers.findOneAndDelete({ _id: req.params.id });
+        await Products.findOneAndDelete({ _id: req.params.id });
         res.json({
-            message: 'Cliente eliminado correctamente'
+            message: 'Producto eliminado correctamente'
         });
     } catch (error) {
         res.status(400).json({
