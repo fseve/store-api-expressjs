@@ -1,0 +1,8 @@
+Inicializar proyecto de npm
+
+    npm init -y
+
+Instalar el framework de express
+
+    npm install express --save
+
