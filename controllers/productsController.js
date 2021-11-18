@@ -112,3 +112,17 @@ exports.delete = async(req, res, next) => {
         });
     }
 };
+
+// Buscar productos
+exports.search = async(req, res, next) => {
+    try {
+        const products = await Products.find({
+            name: new RegExp(req.params.query, 'i')
+        });
+        res.json(products);
+    } catch (error) {
+        res.status(400).json({
+            message: 'Error al procesar la petición'
+        });
+    }
+};

@@ -29,6 +29,8 @@ module.exports = function() {
         productsController.fileUpload,
         productsController.update);
     router.delete('/products/:id', productsController.delete);
+    // Buscar productos
+    router.get('/products/search/:query', productsController.search);
 
     // órdenes
     router.post('/orders', ordersController.add);
