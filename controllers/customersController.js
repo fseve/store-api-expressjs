@@ -25,3 +25,21 @@ exports.list = async(req, res) => {
         next();
     }
 };
+
+// leer cliente por id
+exports.show = async(req, res, next) => {
+    try {
+        const customer = await Customers.findById(req.params.id);
+        if (!customer) {
+            res.status(404).json({
+                message: 'El cliente no existe'
+            });
+        } else { // Se agregó el ELSE al momento de realizar las pruebas
+            res.json(customer);
+        }
+    } catch (error) {
+        res.status(400).json({
+            message: 'Error al procesar la petición'
+        });
+    }
+};
