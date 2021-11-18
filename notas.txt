@@ -6,3 +6,6 @@ Instalar el framework de express
 
     npm install express --save
 
+Ejecutar nuestro proyecto desde consola
+
+    node index.js
