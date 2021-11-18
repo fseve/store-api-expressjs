@@ -4,6 +4,7 @@ const router = express.Router();
 
 const customersController = require('../controllers/customersController');
 const productsController = require('../controllers/productsController');
+const ordersController = require('../controllers/ordersController');
 
 module.exports = function() {
     // post: /customers
@@ -28,6 +29,10 @@ module.exports = function() {
         productsController.fileUpload,
         productsController.update);
     router.delete('/products/:id', productsController.delete);
+
+    // órdenes
+    router.post('/orders', ordersController.add);
+    router.get('/orders', ordersController.list);
 
     return router;
 };
